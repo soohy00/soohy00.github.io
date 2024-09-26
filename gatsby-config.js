@@ -37,8 +37,6 @@ module.exports = {
       },
     },
     "gatsby-plugin-styled-components",
-    "gatsby-remark-reading-time",
-    `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -62,7 +60,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-transformer`,
       options: {
         commonmark: true,
         footnotes: true,
@@ -77,12 +75,6 @@ module.exports = {
               wrapperStyle: "margin-bottom: 16px;",
               quality: 100,
               showCaptions: true,
-            },
-          },
-          {
-            resolve: `gatsby-remark-katex`,
-            options: {
-              strict: `ignore`,
             },
           },
           {
@@ -175,14 +167,16 @@ module.exports = {
             query: `
               {
                 allMarkdownRemark(
-                  sort: { order: DESC, fields: [frontmatter___date] },
+                  sort: { frontmatter: {date: DESC} },
                   filter: { fileAbsolutePath: { regex: "/contents/posts/" } },
                 ) {
                   edges {
                     node {
                       excerpt
                       html
-                      fields { slug }
+                      fields {
+                      slug
+                      }
                       frontmatter {
                         title
                         date
