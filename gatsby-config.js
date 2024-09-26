@@ -60,7 +60,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer`,
+      resolve: `gatsby-transformer-remark`,
       options: {
         commonmark: true,
         footnotes: true,
