@@ -59,13 +59,19 @@ module.exports = {
         path: `${__dirname}/contents`,
       },
     },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        commonmark: true,
-        footnotes: true,
-        pedantic: true,
+      {resolve: `gatsby-plugin-mdx`,
+        options: {
+        extensions: [`.mdx`, `.md`],
         gfm: true,
+        remarkPlugins: [
+          require(`remark-reamark-footnotes`), // footnotes 지원을 위한 remark 플러그인
+        ],
+        rehypePlugins: [], // 추가로 사용할 rehype 플러그인
+        mdxOptions: {
+          commonmark: true,
+          footnotes: true,
+          pedantic: true,
+        },
         plugins: [
           {
             resolve: `gatsby-remark-images`,
